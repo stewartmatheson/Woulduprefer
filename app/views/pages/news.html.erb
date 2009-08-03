@@ -1,0 +1,10 @@
+<h1>News</h1>
+<div id="news_items">
+	<% @feed[:items].each do |item| %>
+		<div class="news_item">
+			<h2><%= item[:title] %></h2>
+			<%= item[:description] %>
+			<%= link_to 'Read more', item[:link] %>
+		</div>
+	<% end %>
+</div>

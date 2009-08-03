@@ -1,0 +1,2 @@
+cd /home/deploy/woulduprefer/current 
+mongrel_rails cluster::start -C config/mongrel_cluster.yml

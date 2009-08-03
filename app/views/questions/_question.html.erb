@@ -1,0 +1,21 @@
+<div class="question">
+	
+	<h2 class="seo_hide"><%= question.answer %></h2>
+	<span id="first_answer_<%= question.id %>" class="answer">
+		<%= link_to question.answer, new_answer_path(:question_id => question.id, :primary => '1'), :class => 'answer_link' %>
+	</span> 
+	or
+	<h2 class="seo_hide"><%= question.alterntive %></h2> 
+	<span id="second_answer_<%= question.id %>" class="answer">
+		<%= link_to question.alterntive, new_answer_path(:question_id => question.id, :primary => '0'), :class => 'answer_link'  %>
+	</span>
+	suggested by <%=h question.user.login %>
+	
+	<div class="question_form"></div>
+	
+	<div id="answer_container_<%= question.id %>" class="answer_container">
+		<% for answer in question.answers.reverse %>
+			<%= render(:partial => 'answers/answer', :locals => {:answer => answer }) %>
+		<% end %>
+	</div>	
+</div>

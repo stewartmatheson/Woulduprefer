@@ -1,0 +1,21 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+    question: What is the opposite of up?
+    answer: down
+
+two:
+    question: What is the oppsite of in?
+    answer: out
+
+three:
+    question: What is five plus three? (type number - dont spell)
+    answer: 8
+
+four:
+    question: What does the s stand for in USA?
+    answer: states
+
+five:
+    question: What color medal do you get for coming first?
+    answer: gold

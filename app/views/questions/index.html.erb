@@ -1,0 +1,37 @@
+<script type="text/javascript" charset="utf-8">
+	
+	function answerClick()
+	{
+		$('.answer_link').click(function(){
+			current_item = $(this);
+			$.get($(this).attr("href"), null, function(data, textStatus){
+				current_item.parent('.answer').parent('.question').children('.question_form').html(data);
+				current_item.parent('.answer').parent('.question').children('.question_form').slideDown("slow");
+			});
+			return false
+		});
+	}
+	
+	$(document).ready(function(){
+		$('#new_question').submitWithAjax('#questionworking', ['question_answer', 'question_alterntive'], 'question_error');
+		answerClick();
+	})
+</script>
+
+<div id="question_container">
+
+<% for question in @questions %>
+	<%= render(:partial => 'question', :locals => {:question => question, :answer_form => @answer_form}) %>
+<% end %>
+</div>
+<br />
+<%= will_paginate @questions %>
+<% if @create_form %>
+	<% content_for :sub_container do %>
+		<div id="createform_contain" >
+			<div id="question_error" class="error"></div>
+			<p>or ask your own question</p>
+			<%= @create_form %>
+		</div>
+	<% end %>
+<% end %>

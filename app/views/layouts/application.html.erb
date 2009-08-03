@@ -1,0 +1,101 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="description" content="Batman or Superman? Jelly or Icecream? Tennis or Golf? Are these questions you have ever considered? This is the place to have your say on what you prefer." />
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title>Would u prefer...</title>
+  <%= stylesheet_link_tag 'default' %>
+  <%= javascript_include_tag 'jquery', 'easing', 'application' %>
+
+<% if flash[:notice] %>
+	<script type="text/javascript" charset="utf-8">
+		
+		$(document).ready(function(){			
+			$('#flash_container').html("<%= flash[:notice] %>");
+			$('#flash_container').slideDown("slow");
+			timeout = function(){
+			    $('#flash_container').slideUp("slow");
+			};
+			setTimeout(timeout, 5000);	
+		});
+				
+	</script>
+<% end %>
+
+</head>
+<body>
+
+<div id="header_container" >
+	<%= @login %>
+</div>
+
+
+<div id="flash_container">
+</div>
+
+<div id="main_container">
+	<% image = image_tag 'logo.png', :alt => 'What would u prefer... logo'  %>
+		
+	<div id="left_container">
+		<h1 class="seo_hide">What would u prefer...</h1>
+		<%= link_to image, '/'%><br />
+		<p class="about">
+			<strong> How this site works...</strong> First, why not answer a question by clicking on what you prefer. Next, <%= link_to 'Sign up', :controller => 'users', :action => 'new' %> and ask your own questions. Done.
+		</p>
+	</div>
+		
+	<div id="container">
+		<%= yield  %>
+	</div>
+	
+</div>
+
+<div id="sub_container">
+	<%= yield :sub_container %>
+</div>
+
+<div class="footer">
+	<% feed_image = image_tag 'feed.png', :alt => "Feed", :class => 'feed_image' %>
+	<ul>
+		<li>Site by <%= link_to 'Stewart Matheson', 'http://rtmatheson.com' %></li>
+		<li><%= link_to 'News', '/news' %></li>
+		<li><%= link_to 'About', '/about' %></li>
+		<li><%= link_to feed_image, '/feed' %></li>
+	</ul>
+</div>
+
+<%= auto_discovery_link_tag(:rss, '/feed') %>
+
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-7799020-1");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+
+<!--
+<script type="text/javascript">
+var uservoiceJsHost = ("https:" == document.location.protocol) ? "https://uservoice.com" : "http://cdn.uservoice.com";
+document.write(unescape("%3Cscript src='" + uservoiceJsHost + "/javascripts/widgets/tab.js' type='text/javascript'%3E%3C/script%3E"))
+</script>
+<script type="text/javascript">
+UserVoice.Tab.show({ 
+  key: 'woulduprefer',
+  host: 'woulduprefer.uservoice.com', 
+  forum: 'general', 
+  alignment: 'left', /* 'left', 'right' */
+  background_color:'#4B9F1E', 
+  text_color: 'white', /* 'white', 'black' */
+  hover_color: '#06C',
+  lang: 'en' /* 'en', 'de', 'nl', 'es', 'fr' */
+})
+</script>
+-->
+</body>
+</html>

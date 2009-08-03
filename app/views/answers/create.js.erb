@@ -1,0 +1,14 @@
+<% if @errors %>
+    $('#answer_errors_<%= @answer.question.id %>').html('<%= @errors %>')
+    $('#answerworking_<%= @answer.question.id %>').hide();
+<% else %>
+    $('#answer_container_<%= @answer.question.id %>').prepend("<%= escape_javascript(render(:partial => 'answers/answer', :locals => {:answer => @answer })) %>");
+    $('.question_form').slideUp('fast');
+    $('#flash_container').html("<%= flash[:notice] %>");
+    $('#flash_container').slideDown("slow");
+    timeout = function(){
+        $('#flash_container').slideUp("slow");
+    };
+    setTimeout(timeout, 5000);
+    <% flash.discard %>
+<% end %>

@@ -1,0 +1,35 @@
+<script type="text/javascript" charset="utf-8">
+	$(document).ready(function(){
+		$('#new_answer_<%= @answer.question_id %>').submitWithAjax('#answerworking_<%= @answer.question_id %>', ['answer_comment_<%= @answer.question_id %>', 'answer_name_<%= @answer.question_id %>'], 'answer_errors_<%= @answer.question_id %>' );
+	})
+</script>
+
+<div class="answer_form">
+<% form_for(@answer, :html => {:id => "new_answer_#{@answer.question_id}"}  ) do |f| %>
+  <div id="answer_errors_<%= @answer.question_id %>" class="error"></div>
+  <p>
+    <%= f.label "Why #{@question_text.capitalize}?" %><br />
+    <%= f.text_field :comment, :id => "answer_comment_#{@answer.question_id}" %>
+  </p>
+
+<% if logged_in? %>
+	<%= f.hidden_field :name %>
+<% else %>
+<p>
+  <%= f.label :name %><br />
+  <%= f.text_field :name, :id => "answer_name_#{@answer.question_id}" %>
+</p>
+<p>
+  <%= label :challenge, :answer, @challenge.question %><br />
+  <%= text_field :challenge, :answer, :id => "challenge_question_#{@answer.question_id}", :value => "" %>
+  <span class="human_validation_label">Human Validation. <a href="/users/new" >Sign up</a> to avoid this.</span>
+</p>
+	<%= hidden_field :challenge, :id, :value => @challenge.id %>
+<% end %>
+  <p>
+	<%= f.hidden_field :is_answer %>
+    <%= f.hidden_field :question_id %>
+	<%= f.submit "Create" %> <span class="working" id="answerworking_<%= @answer.question_id %>"> <%= image_tag 'working.gif', :alt => 'Working...' %> Working... </span>
+  </p>
+<% end %>
+</div>

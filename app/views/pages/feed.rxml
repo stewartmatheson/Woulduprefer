@@ -1,0 +1,19 @@
+xml.instruct! :xml, :version=>"1.0" 
+xml.rss(:version=>"2.0"){
+  xml.channel{
+    xml.title("Would u prefer")
+    xml.link("http://www.woulduprefer.com/")
+    xml.description("Batman or Superman? Jelly or Icecream? Tennis or Golf? Are these questions you have ever considered? This is the place to have your say on what you prefer.")
+    xml.language('en-us')
+      for question in @questions
+        xml.item do
+          xml.title("#{question.answer} or #{question.alterntive}")
+          xml.description("#{question.user.login} has asked what you prefer. #{question.answer} or #{question.alterntive}.")      
+          xml.author(question.user.login)               
+          xml.pubDate(question.created_at.strftime("%a, %d %b %Y %H:%M:%S %z"))
+          xml.link("woulduprefer.com")
+          xml.guid("woulduprefer.com")
+        end
+      end
+  }
+}

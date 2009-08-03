@@ -1,0 +1,11 @@
+<% form_for (@question) do |f| %>
+  <%= f.error_messages %>
+  <p>
+    <%= f.label "Would you prefer..." %><br />
+    <%= f.text_field :answer, :class => 'question_create' %>
+    <%= f.label "or" %>
+    <%= f.text_field :alterntive, :class => 'question_create' %>
+    <%= f.hidden_field :user_id %>
+    <%= f.submit "Create" %> <span class="working" id="questionworking"> <%= image_tag 'working.gif', :alt => 'Working...' %> Working... </span>
+  </p>
+<% end %>

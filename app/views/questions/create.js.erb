@@ -1,0 +1,11 @@
+$('#question_container').prepend("<%= escape_javascript(render(:partial => @question)) %>");
+answerClick();
+$('#questionworking').hide();
+$('#new_question')[0].reset();
+$('#flash_container').html("<%= flash[:notice] %>");
+$('#flash_container').slideDown("slow");
+timeout = function(){
+    $('#flash_container').slideUp("slow");
+};
+setTimeout(timeout, 5000);
+<% flash.discard %>
